@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="shoehorn:jar">
+  <artifact type="jar" build-on-make="true" name="shoehorn:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/shoehorn_jar</output-path>
     <root id="archive" name="shoehorn.jar">
       <element id="module-output" name="shoehorn" />
