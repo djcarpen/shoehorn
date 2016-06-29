@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="shoehorn:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/shoehorn_jar</output-path>
+    <root id="archive" name="shoehorn.jar">
+      <element id="module-output" name="shoehorn" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Jars/hive-exec-1.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
