@@ -64,6 +64,37 @@
 <li>Scala SDK: scala-sdk-2.11.8</li>
 </ul>
 
+<table>
+<thead>
+<tr>
+<th>Project Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content from cell 1</td>
+<td>Content from cell 2</td>
+</tr>
+<tr>
+<td>Project type</td>
+<td>Scala</td>
+</tr>
+<tr>
+<td>Project name</td>
+<td>shoehorn</td>
+</tr>
+<tr>
+<td>Project SDK</td>
+<td>1.8 (java version 1.8)</td>
+</tr>
+<tr>
+<td>Scala SDK</td>
+<td>scala-sdk-2.11.8</td>
+</tr>
+</tbody>
+</table>
+
 <h3>
 <a id="create-package" class="anchor" href="#create-package" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create package</h3>
 
@@ -112,6 +143,31 @@ class ScalaUDF extends UDF {
 <a id="create-artifact-1" class="anchor" href="#create-artifact-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create artifact</h3>
 
 <p>Using Intellij IDEA select Build&gt;"Make Project" from the file menu. Next, select Build&gt;"Build Artifacts...". This will create the /shoehorn/out/artifacts/shoehorn_jar/shoehorn.jar file.</p>
+
+<h3>
+<a id="create-hive-udf" class="anchor" href="#create-hive-udf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create Hive UDF</h3>
+
+<p>Upload the shoehorn.jar file to HDFS. You may need to change the file permissions depending on which user will be executing Hive commands. For this example, I've uploaded the file to my local Hortonworks Sandbox in the location: hdfs:///jars/shoehorn.jar</p>
+
+<p>In hive, run the following command to register a new udf. Note: This can be done in the Hive view in Ambari or through the Hive CLI.</p>
+
+<pre><code>create function getScalaLength as 'udf.ScalaUDF' using jar 'hdfs:///jars/shoehorn.jar';
+</code></pre>
+
+<p>Finally, we can test our udf using the following HQL in Hive.</p>
+
+<pre><code>select phone_number, getScalaLength(phone_number) from xademo.customer_details limit 5;
+</code></pre>
+
+<p>The result set returned:</p>
+
+<pre><code>PHONE_NUM   9
+5553947406  10
+7622112093  10
+5092111043  10
+9392254909  10
+Time taken: 6.38 seconds, Fetched: 5 row(s)
+</code></pre>
       </section>
     </div>
 
