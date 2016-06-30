@@ -46,7 +46,24 @@ Hortonworks Sandbox 2.4</p>
 <h3>
 <a id="lets-get-started" class="anchor" href="#lets-get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Let's get started...</h3>
 
-<p>The first thing we need to do is create a class in Scala.</p>
+<p>The first thing we need to do is create a Scala class. First we need to import the appropriate Apache Hive libraries.
+    <code>import org.apache.hadoop.hive.ql.exec.UDF</code></p>
+
+<p>Our class will extend the imported Hive library. For this example, the class name is ScalaUDF. 
+    <code>class ScalaUDF extends UDF {
+}</code></p>
+
+<p>Now we add our function definition. For this example, I'm creating a simple function that takes an input column of string type and returns the length of that string. This function is for demonstration purposes only as there is already a Hive function that provides the same functionality. 
+    <code>def evaluate(str: String): Int = {
+    str.length()
+  }</code></p>
+
+<p>The final class definition:
+    <code>class ScalaUDF extends UDF {
+  def evaluate(str: String): Int = {
+    str.length()
+  }
+}</code></p>
       </section>
     </div>
 
