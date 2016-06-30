@@ -31,30 +31,34 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h1>
+        <h3>
+<a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
 
 <p>There are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions). This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.</p>
 
-<h2>
-<a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment</h2>
+<h3>
+<a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment</h3>
 
-<p>Intellij IDEA 2016
-Oracle Virtual Box
-Hortonworks Sandbox 2.4</p>
+<ul>
+<li>Intellij IDEA 2016</li>
+<li>Oracle Virtual Box</li>
+<li>Hortonworks Sandbox 2.4</li>
+</ul>
 
 <h3>
 <a id="lets-get-started" class="anchor" href="#lets-get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Let's get started...</h3>
 
-<p>The first thing we need to do is create a Scala class. First we need to import the appropriate Apache Hive libraries.</p>
+<p>The first thing we need to do is create a Scala class. For this example, the class name is ScalaUDF. </p>
 
-<pre><code>import org.apache.hadoop.hive.ql.exec.UDF
+<pre><code>class ScalaUDF {
+}
 </code></pre>
 
-<p>Our class will extend the imported Hive library. For this example, the class name is ScalaUDF. </p>
+<p>The next step is to edit your project structure and add the <a href="http://repo1.maven.org/maven2/org/apache/hive/hive-exec/1.2.1/hive-exec-1.2.1.jar">hive-exec-1.2.1.jar</a> file to the module dependencies.</p>
 
-<pre><code>class ScalaUDF extends UDF {
-}
+<p>We can now reference that library in our ScalaUDF class.</p>
+
+<pre><code>import org.apache.hadoop.hive.ql.exec.UDF
 </code></pre>
 
 <p>Now we add our function definition. For this example, I'm creating a simple function that takes an input column of string type and returns the length of that string. This function is for demonstration purposes only as there is already a Hive function that provides the same functionality. </p>
@@ -64,14 +68,24 @@ str.length()
 }
 </code></pre>
 
-<p>The final class definition:</p>
+<p>ScalaUDF class definition:</p>
 
-<pre><code>class ScalaUDF extends UDF {
+<pre><code>class ScalaUDF {
   def evaluate(str: String): Int = {
     str.length()
   }
 }
 </code></pre>
+
+<h3>
+<a id="set-dependencies" class="anchor" href="#set-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Set dependencies</h3>
+
+<p>In order to use our function in Hive, we need to use the</p>
+
+<h3>
+<a id="creating-the-jar-file" class="anchor" href="#creating-the-jar-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating the jar file</h3>
+
+<p>Now that we have our class created, we need to package it into a jar file. Edit the </p>
       </section>
     </div>
 
