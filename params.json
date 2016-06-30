@@ -1,6 +1,6 @@
 {
   "name": "Shoehorn",
   "tagline": "How to create Hive UDF in Scala",
-  "body": "# Summary\r\nThere are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions). This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.",
+  "body": "# Abstract\r\nThere are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions). This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.\r\n\r\n## Environment\r\nIntellij IDEA 2016\r\nOracle Virtual Box\r\nHortonworks Sandbox 2.4\r\n\r\n### Let's get started...\r\nThe first thing we need to do is create a class in Scala.",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
