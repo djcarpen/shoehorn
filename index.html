@@ -34,7 +34,7 @@
         <h3>
 <a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
 
-<p>There are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions). This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.</p>
+<p>There are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions) written in java. This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.</p>
 
 <h3>
 <a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment</h3>
@@ -46,31 +46,62 @@
 </ul>
 
 <h3>
-<a id="lets-get-started" class="anchor" href="#lets-get-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Let's get started...</h3>
+<a id="artifact-produced" class="anchor" href="#artifact-produced" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Artifact produced</h3>
 
-<p>The first thing we need to do is create a Scala class. For this example, the class name is ScalaUDF. </p>
+<ul>
+<li>shoehorn.jar</li>
+</ul>
 
-<pre><code>class ScalaUDF {
+<h3>
+<a id="create-project" class="anchor" href="#create-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create project.</h3>
+
+<p>Using Intellij IDEA, create a new project with the following configuration.</p>
+
+<ul>
+<li>Project type: Scala</li>
+<li>Project name: shoehorn</li>
+<li>Project SDK: 1.8 (java version 1.8)</li>
+<li>Scala SDK: scala-sdk-2.11.8</li>
+</ul>
+
+<h3>
+<a id="create-package" class="anchor" href="#create-package" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create package</h3>
+
+<p>Once the project is created, add a package under /shoehorn/src/ named: udf</p>
+
+<h3>
+<a id="set-dependencies" class="anchor" href="#set-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Set dependencies</h3>
+
+<p>Edit your project structure and add the <a href="http://repo1.maven.org/maven2/org/apache/hive/hive-exec/1.2.1/hive-exec-1.2.1.jar">hive-exec-1.2.1.jar</a> file to the module dependencies.</p>
+
+<h3>
+<a id="create-artifact" class="anchor" href="#create-artifact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create Artifact</h3>
+
+<p>Edit your project structure and add and artifact of type JAR&gt;module with dependencies. For this example, I am adding the artifact to the shoehorn module.</p>
+
+<h3>
+<a id="create-scala-class" class="anchor" href="#create-scala-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create Scala class</h3>
+
+<p>The first thing we need to do is create a Scala class referencing the org.apache.hadoop.hive.ql.exec.UDF library. For this example, the class name is ScalaUDF. </p>
+
+<pre><code>package udf
+
+import org.apache.hadoop.hive.ql.exec.UDF
+
+class ScalaUDF extends UDF {
 }
 </code></pre>
 
-<p>The next step is to edit your project structure and add the <a href="http://repo1.maven.org/maven2/org/apache/hive/hive-exec/1.2.1/hive-exec-1.2.1.jar">hive-exec-1.2.1.jar</a> file to the module dependencies.</p>
+<h3>
+<a id="define-function" class="anchor" href="#define-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Define function</h3>
 
-<p>We can now reference that library in our ScalaUDF class.</p>
+<p>Now we add our function definition inside the ScalaUDF definition. For this example, I'm creating a simple function that takes an input column of string type and returns the length of that string. This function is for demonstration purposes only as there is already a Hive function that provides the same functionality. </p>
 
-<pre><code>import org.apache.hadoop.hive.ql.exec.UDF
-</code></pre>
+<pre><code>package udf
 
-<p>Now we add our function definition. For this example, I'm creating a simple function that takes an input column of string type and returns the length of that string. This function is for demonstration purposes only as there is already a Hive function that provides the same functionality. </p>
+import org.apache.hadoop.hive.ql.exec.UDF
 
-<pre><code>def evaluate(str: String): Int = {
-str.length()
-}
-</code></pre>
-
-<p>ScalaUDF class definition:</p>
-
-<pre><code>class ScalaUDF {
+class ScalaUDF extends UDF {
   def evaluate(str: String): Int = {
     str.length()
   }
@@ -78,14 +109,9 @@ str.length()
 </code></pre>
 
 <h3>
-<a id="set-dependencies" class="anchor" href="#set-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Set dependencies</h3>
+<a id="create-artifact-1" class="anchor" href="#create-artifact-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create artifact</h3>
 
-<p>In order to use our function in Hive, we need to use the</p>
-
-<h3>
-<a id="creating-the-jar-file" class="anchor" href="#creating-the-jar-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating the jar file</h3>
-
-<p>Now that we have our class created, we need to package it into a jar file. Edit the </p>
+<p>Using Intellij IDEA select Build&gt;"Make Project" from the file menu. Next, select Build&gt;"Build Artifacts...". This will create the /shoehorn/out/artifacts/shoehorn_jar/shoehorn.jar file.</p>
       </section>
     </div>
 
