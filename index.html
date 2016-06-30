@@ -34,15 +34,7 @@
         <h3>
 <a id="abstract" class="anchor" href="#abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h3>
 
-<p>There are many articles on how to extend the capabilities of Apache Hive with the use of custom UDFs (User Defined Functions) written in java. This article will focus on how to create a UDF in the Scala programming language. Once we create the UDF, we will test it on the Hortonworks Sandbox 2.4.</p>
-
-<p>--- ##### Environment
---- - Intellij IDEA 2016
---- - Oracle Virtual Box
---- - Hortonworks Sandbox 2.4</p>
-
-<p>--- ##### Artifact produced
---- - shoehorn.jar</p>
+<p>This article will focus on creating a custom HIVE UDF in the Scala programming language. Intellij IDEA 2016 was used to create the project and artifacts. Creation and testing of the UDF was performed on the Hortonworks Sandbox 2.4 using Oracle Virtual Box.</p>
 
 <h3>
 <a id="create-project" class="anchor" href="#create-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create project.</h3>
@@ -59,7 +51,7 @@
 <h3>
 <a id="create-package" class="anchor" href="#create-package" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create package</h3>
 
-<p>Once the project is created, add a package under /shoehorn/src/ named: udf</p>
+<p>Once the project is created, add a new package under /shoehorn/src/ named: udf</p>
 
 <h3>
 <a id="set-dependencies" class="anchor" href="#set-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Set dependencies</h3>
